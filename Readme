@@ -1,0 +1,12 @@
+##Initialize the tsconfig file
+the file `npm run tsc -- --init`
+
+##install package express
+the package `npm install @types/express -D`
+the package `npm install express typescript @types/express @types/cors --save`
+the package `npm install dotenv --save`
+
+##comand docker
+ver todas mis contenedores `docker ps -a`
+`docker-compose up -d ` iniciar mis contenedores
+
