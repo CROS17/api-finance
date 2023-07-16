@@ -1,16 +1,32 @@
-import express, { Request, Response } from 'express';
+import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
+import sequelize from './settings/dbconnection';
 
-const app = express();
-const PORT = 3003;
+/* Rutas */
+import routerUser from './routes/user.route';
 
-app.use(cors());
+const app: Application = express();
+const port: number = 3003;
+
 app.use(express.json());
+app.use(cors());
 
-app.get('/ping', (req: Request, res: Response) => {
-    res.send('Pong yes!');
+app.get('/', (req: Request, res: Response) => {
+  res.json({
+    msg: 'API Working'
+  });
 });
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+app.use('/api/users', routerUser);
+
+sequelize.authenticate()
+  .then(() => {
+    console.log('Database connected');
+    app.listen(port, () => {
+      console.log(`Application running on port ${port}`);
+    });
+  })
+  .catch((error) => {
+    console.log(error);
+    console.log('Error connecting to database');
+  });

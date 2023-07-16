@@ -12,7 +12,8 @@ COPY package*.json ./
 
 COPY . .
 
-RUN npm install
+#RUN npm install
+RUN npm install --only=production
 
 #ENV NODE_ENV=production
 
@@ -20,6 +21,8 @@ RUN npm install
 EXPOSE 3003
 
 # Comando para iniciar tu aplicación cuando el contenedor se inicie
-CMD npm start
+#CMD npm start
+CMD ["npm start", "nodemon"]
+
 
 
