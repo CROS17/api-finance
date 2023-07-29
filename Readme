@@ -10,11 +10,13 @@ the package `npm install --save @types/nodemon`
 the package `npm install --save sequelize`
 the package `npm install --save mysql2`
 the package `npm i --save-dev @types/bcrypt`
+the package `npm install jsonwebtoken` o `npm i --save-dev @types/jsonwebtoken`
 
 
 ##comand docker
 ver todas mis contenedores `docker ps -a`
 iniciar mis contenedores `docker-compose up -d `
+detener mis contenedores `docker stop `
 
 ##sequelize migrations
 1. la CLI de Sequelize globalmente en tu máquina `npm install -g sequelize-cli`

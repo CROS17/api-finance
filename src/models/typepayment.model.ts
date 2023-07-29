@@ -1,46 +1,36 @@
 import { DataTypes, Model } from 'sequelize';
-import { Request } from 'express';
 import sequelize  from '../settings/dbconnection';
 
-class User extends Model {
+class TypePayment extends Model {
   public id!: number;
-  public name!: string;
-  public email!: string;
-  public password!: string;
+  public description!: string;
+  public status!: boolean;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 }
 
-User.init(
+TypePayment.init(
   {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    name: {
+    description: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-    },
-    password: {
-      type: DataTypes.STRING,
+    status: {
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
   },
   {
-    tableName: 'users',
+    tableName: 'type_payments',
     sequelize,
   }
 );
 
-export default User;
+export default TypePayment;
 
-export interface CustomRequest extends Request {
-  user?: User;
-}
