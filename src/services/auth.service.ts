@@ -40,7 +40,7 @@ class AuthService {
 
     // Puedes usar la biblioteca `cookie` para eliminar la cookie.
 
-    // res.clearCookie('nombreDeLaCookie');
+    // res.clearCookie('nombreDeLaCookie')
 
   }*/
 
