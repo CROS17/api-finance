@@ -9,7 +9,7 @@ class Income extends Model {
   public type_payment_id!: number;
   public description!: string;
   public amount!: number;
-  public date_income_payment!: string;
+  public date_income_payment!: Date;
   public status!: boolean;
 
   public readonly createdAt!: Date;
@@ -46,6 +46,7 @@ Income.init(
     status: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      defaultValue: true
     }
 
   },

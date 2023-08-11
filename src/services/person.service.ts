@@ -6,9 +6,7 @@ class PersonService {
   }
 
   public async createPerson(personData: Partial<Person>): Promise<Person> {
-    console.log("ante-create:",personData);
     const test = await Person.create(personData);
-    console.log("create:",test);
     return test;
   }
 

@@ -17,7 +17,7 @@ export const login = async (req: Request, res: Response) => {
 export const logout = async (req: Request, res: Response) => {
   try {
     //const token = req.headers.authorization?.split(' ')[1];
-    //authService.logout(token);
+    //authService.logout(token)
     res.status(HTTP_RESPONSE.OK).json({ message: 'Logout successful' });
   } catch (error) {
     res.status(HTTP_RESPONSE.INTERNAL_SERVER_ERROR).json({ error: 'Logout failed' });

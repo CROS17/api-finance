@@ -21,7 +21,6 @@ export const createPerson = async (req: Request, res: Response) => {
   try {
     const author = req.body
     const dataPerson = await personService.createPerson(author);
-    console.log("create respuesta:",dataPerson);
     res.status(HTTP_RESPONSE.CREATED).json({data: dataPerson});
   } catch (error) {
     res.status(HTTP_RESPONSE.INTERNAL_SERVER_ERROR).json({error: 'Internal server error'});
