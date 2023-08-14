@@ -9,7 +9,7 @@ const generateSecretKey = (): string => {
 const secretKey = generateSecretKey();
 console.log('Secret Key:', secretKey);
 
-export const generateToken = (user: User): string => {
+export const generateTokenMiddleware = (user: User): string => {
   const payload = {
     userId: user.id,
     email: user.email,

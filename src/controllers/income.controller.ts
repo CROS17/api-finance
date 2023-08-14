@@ -1,6 +1,6 @@
 import {Request, Response} from 'express';
 import IncomeService from "../services/income.service";
-import {HTTP_RESPONSE} from "../settings/http-response";
+import {HTTP_RESPONSE} from "../middleware/http-response.middleware";
 
 const incomeService = new IncomeService()
 
@@ -42,7 +42,7 @@ export const deleteIncome =async (req: Request, res: Response) => {
   try {
     const authorId = Number(req.params.id);
     const incomeData = await incomeService.deleteIncome(authorId);
-    res.status(HTTP_RESPONSE.OK).json({data: incomeData}); 
+    res.status(HTTP_RESPONSE.OK).json({data: incomeData});
   } catch (e) {
     res.status(HTTP_RESPONSE.INTERNAL_SERVER_ERROR).json({error: e})
   }

@@ -1,6 +1,6 @@
 import {Request, Response} from 'express';
 import ExpenseService from "../services/expense.service";
-import {HTTP_RESPONSE} from "../settings/http-response";
+import {HTTP_RESPONSE} from "../middleware/http-response.middleware";
 
 const expenseService = new ExpenseService()
 
@@ -42,7 +42,7 @@ export const deleteExpense =async (req: Request, res: Response) => {
   try {
     const authorId = Number(req.params.id);
     const expenseData = await expenseService.deleteExpense(authorId);
-    res.status(HTTP_RESPONSE.OK).json({data: expenseData}); 
+    res.status(HTTP_RESPONSE.OK).json({data: expenseData});
   } catch (e) {
     res.status(HTTP_RESPONSE.INTERNAL_SERVER_ERROR).json({error: e})
   }
