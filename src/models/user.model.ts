@@ -1,5 +1,4 @@
 import { DataTypes, Model } from 'sequelize';
-import { Request } from 'express';
 import sequelize  from '../settings/dbconnection';
 
 class User extends Model {
@@ -40,7 +39,3 @@ User.init(
 );
 
 export default User;
-
-export interface CustomRequest extends Request {
-  user?: User;
-}

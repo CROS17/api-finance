@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import {HTTP_RESPONSE} from '../settings/http-response'
+import {HTTP_RESPONSE} from '../middleware/http-response.middleware'
 import UserService from "../services/user.service";
 
 const userService = new UserService();

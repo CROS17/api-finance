@@ -1,17 +1,19 @@
 import User from '../models/user.model';
-import {generateToken, secretKey} from '../settings/generate-token';
+import {generateTokenMiddleware, secretKey} from '../middleware/generate-token.middleware';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import UserService from '../services/user.service';
 
 class AuthService {
   private userService: UserService;
+  private revokedTokens: Set<string>;
 
   constructor() {
     this.userService = new UserService();
+    this.revokedTokens = new Set();
   }
 
-  public async login(email: string, password: string): Promise<string> {
+  public async login(email: string, password: string): Promise<{ user: User; token: string }> {
     const user = await User.findOne({ where: { email } });
     if (!user) {
       throw new Error('Invalid credentials');
@@ -21,12 +23,17 @@ class AuthService {
       throw new Error('Invalid credentials');
     }
     // Generar y devolver un token de sesión, como un token JWT
-    const token = generateToken(user);
-    return token;
+    const token = generateTokenMiddleware(user);
+
+    return { user, token };
   }
 
   public async verifyToken(token: string): Promise<User | null> {
     try {
+      if (this.revokedTokens.has(token)) {
+        return null; // Token revocado
+      }
+
       const decodedToken = jwt.verify(token, secretKey) as { userId: number, email: string };
       return await this.userService.getUserById(decodedToken.userId);
     } catch (error) {
@@ -34,15 +41,9 @@ class AuthService {
     }
   }
 
-  /*public logout(token: string): void {
-
-    const expiredToken = jwt.sign({}, secretKey, { expiresIn: '1ms' });
-
-    // Puedes usar la biblioteca `cookie` para eliminar la cookie.
-
-    // res.clearCookie('nombreDeLaCookie')
-
-  }*/
+  public logout(token: string): void {
+    this.revokedTokens.add(token);
+  }
 
 }
 
