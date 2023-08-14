@@ -1,10 +1,10 @@
 import {Request, Response} from 'express';
-import {HTTP_RESPONSE} from '../settings/http-response'
+import {HTTP_RESPONSE} from '../middleware/http-response.middleware'
 import PersonService from "../services/person.service";
 
 const personService = new PersonService();
 export const getByIdPerson = async (req: Request, res: Response) => {
-  const authorId = Number(req.params.id);
+  const authorId = Number(req.params.user_id);
   try {
     const person = await personService.getPersonById(authorId);
     if (person) {
@@ -13,6 +13,7 @@ export const getByIdPerson = async (req: Request, res: Response) => {
       res.status(HTTP_RESPONSE.NOT_FOUND).json({ message: 'Person not found' });
     }
   } catch (error) {
+    console.error("Error", error);
     res.status(HTTP_RESPONSE.INTERNAL_SERVER_ERROR).json({error: 'Internal server error'});
   }
 }

@@ -2,11 +2,12 @@ import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 
 import sequelize from './settings/dbconnection';
+/*import { verifyAuthToken } from './middleware/verify-auth-token.middleware';*/
 
 /* Rutas */
 import routerUser from './routes/user.route';
 import routerPerson from './routes/person.route';
-import routerIncome from './routes/incomer.route';
+import routerIncome from './routes/income.route';
 import routerExpense from './routes/expense.route';
 
 const app: Application = express();
@@ -27,7 +28,7 @@ app.get('/api', (req: Request, res: Response) => {
 });
 
 
-// Ruta de personas protegida por autenticación
+// Ruta de personas protegida por autenticación verifyAuthToken
 app.use('/api/persons', routerPerson);
 app.use('/api/incomes', routerIncome);
 app.use('/api/expenses', routerExpense);

@@ -56,7 +56,8 @@ Person.init(
 );
 
 Person.belongsTo(User, {
-  foreignKey: 'user_id'
+  foreignKey: 'user_id',
+  as: 'user'
 });
 export default Person;
 
