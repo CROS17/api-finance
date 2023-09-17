@@ -3,7 +3,7 @@ import { getByIdPerson, createPerson, updatePerson, deletePerson }  from '../con
 
 const router = Router();
 
-router.get('/:id', getByIdPerson);
+router.get('/:user_id', getByIdPerson);
 router.post('/', createPerson);
 router.patch('/:id', updatePerson);
 router.delete('/:id', deletePerson);

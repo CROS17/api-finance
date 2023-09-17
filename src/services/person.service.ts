@@ -1,8 +1,12 @@
 import Person from '../models/person.model';
 
 class PersonService {
-  public async getPersonById(id: number): Promise<Person | null> {
-    return await Person.findByPk(id);
+  public async getPersonById(user_id: number): Promise<Person | null> {
+    return await Person.findOne({
+      where: {
+        user_id: user_id,
+      },
+    });
   }
 
   public async createPerson(personData: Partial<Person>): Promise<Person> {

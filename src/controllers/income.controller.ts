@@ -5,15 +5,17 @@ import {HTTP_RESPONSE} from "../middleware/http-response.middleware";
 const incomeService = new IncomeService()
 
 export const getByIdIncome =async (req: Request, res: Response) => {
-  const authorId = Number(req.params.id);
+  const authorId = Number(req.params.user_id);
   try {
     const income = await incomeService.getIncomeByPersonId(authorId);
     if(!income){
-      res.status(HTTP_RESPONSE.NOT_FOUND).json({ message: 'Income Person not found' });
+      return res.status(HTTP_RESPONSE.NOT_FOUND).json({
+        error: 'Income Person not found',
+      });
     }
     res.status(HTTP_RESPONSE.OK).json(income)
-  } catch (e) {
-    res.status(HTTP_RESPONSE.INTERNAL_SERVER_ERROR).json({error: e})
+  } catch (error) {
+    res.status(HTTP_RESPONSE.INTERNAL_SERVER_ERROR).json({error: error})
   }
 }
 

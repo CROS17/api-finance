@@ -57,10 +57,12 @@ Income.init(
 );
 
 Income.belongsTo(User, {
-  foreignKey: 'user_id'
+  foreignKey: 'user_id',
+  as: 'user',
 });
 Income.belongsTo(TypePayment, {
-  foreignKey: 'type_payment_id'
+  foreignKey: 'type_payment_id',
+  as: 'typePayment', // Agregamos un alias
 });
 export default Income;
 

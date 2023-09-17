@@ -3,7 +3,7 @@ import { getByIdIncome, createIncome, updateIncome, deleteIncome }  from '../con
 
 const router = Router();
 
-router.get('/:id', getByIdIncome);
+router.get('/:user_id', getByIdIncome);
 router.post('/', createIncome);
 router.patch('/:id', updateIncome);
 router.delete('/:id', deleteIncome);
