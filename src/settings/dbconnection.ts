@@ -10,8 +10,11 @@ const sequelize = new Sequelize(
   host: process.env.DB_HOST,
   port: 3306,
   dialect: 'mysql',
+  pool: {
+    acquire: 30000, // Tiempo de espera máximo para adquirir una conexión en milisegundos
+    idle: 10000,    // Tiempo de espera máximo para que una conexión esté inactiva en milisegundos
+  },
   dialectOptions: {
-    requestTimeout: 30000, // timeout = 30 seconds
     options: {
       encrypt: true,
     }
