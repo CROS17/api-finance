@@ -2,7 +2,7 @@
 FROM node:16-alpine
 
 # Instala las dependencias
-RUN npm install -g npm
+#RUN npm install
 
 # Establece el directorio de trabajo dentro del contenedor
 WORKDIR  /usr/src/
@@ -12,8 +12,8 @@ COPY package*.json ./
 
 COPY . .
 
-#RUN npm install
-RUN npm install --only=production
+RUN npm install
+#RUN npm install --only=production
 
 #ENV NODE_ENV=production
 

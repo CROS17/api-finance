@@ -10,8 +10,7 @@ class PersonService {
   }
 
   public async createPerson(personData: Partial<Person>): Promise<Person> {
-    const test = await Person.create(personData);
-    return test;
+    return await Person.create(personData);
   }
 
   public async updatePerson(id: number, personData: Partial<Person>) {

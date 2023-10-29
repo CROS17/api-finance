@@ -14,6 +14,6 @@ router.delete('/:id', verifyAuthToken, deleteUser);
 /* Rutas de autenticación */
 router.post('/login', login);
 // Ruta de logout con middleware para verificar el token
-router.post('/logout', logout);
+router.post('/logout', verifyAuthToken, logout);
 
 export default router;
