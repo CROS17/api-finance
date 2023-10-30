@@ -31,7 +31,8 @@ class AuthService {
   public async verifyToken(token: string): Promise<User | null> {
     try {
       if (this.revokedTokens.has(token)) {
-        return null; // Token revocado
+        //return null; // Token revocado
+        throw new Error('Token revocado');
       }
 
       const decodedToken = jwt.verify(token, secretKey) as { userId: number, email: string };

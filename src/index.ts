@@ -36,6 +36,7 @@ app.use('/api/expenses', routerExpense);
 // Resto de las rutas sin autenticación
 app.use('/api/users', routerUser);
 
+
 sequelize.authenticate()
   .then(() => {
     console.log('Database connected');

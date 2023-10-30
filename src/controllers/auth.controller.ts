@@ -8,7 +8,10 @@ export const login = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
     const data = await authService.login(email, password);
-    res.status(HTTP_RESPONSE.OK).json({ data });
+    res.status(HTTP_RESPONSE.OK).json({
+      message: "success",
+      data: data
+    });
   } catch (error) {
     res.status(HTTP_RESPONSE.UNAUTHORIZED).json({ error: 'Invalid credentials' });
   }
