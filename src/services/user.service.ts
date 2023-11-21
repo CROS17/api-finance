@@ -3,6 +3,15 @@ import bcrypt from 'bcrypt';
 
 class UserService {
 
+  public async getUserHeader(id: number): Promise<User | null> {
+    return await User.findOne({
+      where: {
+        id: id
+      },
+      attributes: ['id','name', 'email']
+    });
+  }
+
   public async getUserById(id: number): Promise<User | null> {
     return await User.findByPk(id,{
       attributes: ['id','name', 'email'],

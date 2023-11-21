@@ -2,9 +2,11 @@ import {Request, Response} from 'express';
 import {HTTP_RESPONSE} from '../middleware/http-response.middleware'
 import PersonService from "../services/person.service";
 import AuthService from "../services/auth.service";
+import {extractUserIdFromToken} from "../middleware/verify-auth-token.middleware";
 
 const personService = new PersonService();
 const authService = new AuthService();
+
 
 export const getByIdPerson = async (req: Request, res: Response) => {
 
@@ -41,20 +43,11 @@ export const getByIdPerson = async (req: Request, res: Response) => {
 
 export const createPerson = async (req: Request, res: Response) => {
   try {
-    let token;
-    let userID;
 
-    if (req.headers.authorization != null) {
-      token = req.headers.authorization.split(' ')[1];
-    }
-
-    if (token) {
-      userID = await authService.verifyToken(token);
-    }
+    const authorId = await extractUserIdFromToken(req);
 
     const author = req.body;
-    if(userID){
-      const authorId = userID.dataValues.id;
+    if (authorId) {
       author.user_id = authorId;
     }
 

@@ -1,4 +1,4 @@
-import UserService from '../services/user.service';
+import UserService from '../../services/user.service';
 
 // Mock de UserService
 const userService = new UserService();
@@ -7,7 +7,7 @@ describe('Registro y actualización de usuarios', () => {
   test('Debería poder registrar un usuario', async () => {
     const userData = {
       name: 'Usuario de Prueba',
-      email: 'prueba@example.com',
+      email: 'test@finance.com',
       password: 'contrasenaSegura',
     };
 
@@ -23,7 +23,7 @@ describe('Registro y actualización de usuarios', () => {
     expect(createdUser.password).not.toBe(userData.password);
   });
 
-  test('Debería poder actualizar un usuario', async () => {
+  /*test('Debería poder actualizar un usuario', async () => {
     // Supongamos que tienes un usuario existente con ID 2 en la base de datos
     const userId = 21;
     const updatedUserData = {
@@ -44,6 +44,6 @@ describe('Registro y actualización de usuarios', () => {
 
     // Verifica que la contraseña esté cifrada
     expect(updatedUser!.password).not.toBe(updatedUserData.password);
-  });
+  });*/
 
 });

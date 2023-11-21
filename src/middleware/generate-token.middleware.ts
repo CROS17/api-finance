@@ -7,20 +7,23 @@ const generateSecretKey = (): string => {
 };
 
 const secretKey = generateSecretKey();
-console.log('Secret Key:', secretKey);
 
 export const generateTokenMiddleware = (user: User): string => {
   const payload = {
     userId: user.id,
     email: user.email,
-    // Otros datos del usuario que desees incluir en el token
   };
 
-  const options = {
-    expiresIn: '1h', // Tiempo de expiración del token, por ejemplo, 1 hora
-  };
+/*const options = {
+    expiresIn: '1h' // Tiempo de expiración del token, 1 dia
+  };*/
+  /*return jwt.sign(payload, secretKey, options);*/
 
-  return jwt.sign(payload, secretKey, options);
+  const accessToken = jwt.sign(payload, secretKey, { expiresIn: '1h' });
+  const refreshToken = jwt.sign(payload, secretKey, { expiresIn: '1d' });
+
+  return  accessToken + refreshToken;
+
 };
 
 export { secretKey };

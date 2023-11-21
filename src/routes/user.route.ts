@@ -1,11 +1,12 @@
 import { Router } from 'express';
-import { getByIdUser, createUser, updateUser, deleteUser } from '../controllers/user.controller';
+import {createUser, updateUser, deleteUser, getUserHeader, getByIdUser} from '../controllers/user.controller';
 import { login, logout } from '../controllers/auth.controller';
 import { verifyAuthToken } from '../middleware/verify-auth-token.middleware';
 
 const router = Router();
 
 /* Rutas de usuarios */
+router.get('/', verifyAuthToken, getUserHeader);
 router.get('/:id', verifyAuthToken, getByIdUser);
 router.post('/', createUser);
 router.patch('/:id', verifyAuthToken, updateUser);
